@@ -24,10 +24,10 @@ ABS_RY=y2,\
 ABS_HAT0X=dpad_x,\
 ABS_HAT0Y=dpad_y \
 	--evdev-keymap \
-BTN_EAST=a,\
-BTN_SOUTH=b,\
-BTN_NORTH=x,\
-BTN_C=y,\
+BTN_SOUTH=a,\
+BTN_EAST=b,\
+BTN_C=x,\
+BTN_NORTH=y,\
 BTN_TL=lt,\
 BTN_TR=rt,\
 BTN_WEST=lb,\
