@@ -1,0 +1,7 @@
+[Unit]
+Description="Xbox One Controller udev campanion service #%i""
+After=bluetooth.target
+
+[Service]
+ExecStart=/opt/Retropie_repos/controller-setup/xboxdrv-scripts/xboxdrv-Xbox_One_Wireless_Controller_Xboxdrv.sh /dev/input/%i
+KillMode=mixed
