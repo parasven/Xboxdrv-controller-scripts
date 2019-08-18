@@ -11,6 +11,7 @@ sudo /opt/retropie/supplementary/xboxdrv/bin/xboxdrv \
 	--mimic-xpad \
 	--trigger-as-button \
 	--device-name "Nintendo Switch Pro Controller (Xboxdrv)" \
+	--axismap X2=Y2,Y2=X2\
 	--calibration \
 x1=-25236:0:30635,\
 y1=-27469:0:30652,\
