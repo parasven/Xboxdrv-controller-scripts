@@ -1,0 +1,7 @@
+[Unit]
+Description="8Bitdo SFC30 GamePad udev campanion service #%i""
+After=bluetooth.target
+
+[Service]
+ExecStart=/opt/Retropie_repos/controller-setup/xboxdrv-scripts/8Bitdo_SFC30_GamePad_Xboxdrv.sh /dev/input/%i
+KillMode=mixed
