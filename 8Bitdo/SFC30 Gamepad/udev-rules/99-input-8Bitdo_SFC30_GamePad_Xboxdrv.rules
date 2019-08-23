@@ -1,0 +1,23 @@
+## Make the Device invisible to the normal retropie user "sven"
+## To accomplish this we restrict the access to the device files to "root"
+## This is done by adjusting the access right to 600 upton it creation.
+ACTION=="add", \
+ATTRS{name}=="8Bitdo SFC30 GamePad", \
+KERNEL=="event*|js*", \
+SUBSYSTEM=="input", \
+RUN+="/bin/bash -c 'chmod 600 /dev/input/$kernel'"
+
+## Start Xboxdrv when the Pad is connected.
+ACTION=="add", \
+ATTRS{name}=="8Bitdo SFC30 GamePad", \
+KERNEL=="event*", \
+SUBSYSTEM=="input", \
+TAG+="systemd", \
+ENV{SYSTEMD_WANTS}="8Bitdo_SFC30_GamePad_Xboxdrv@$kernel"
+
+## Kill the Xboxdrv upton removal of the Pad.
+ACTION=="remove", \
+ATTRS{name}=="8Bitdo SFC30 GamePad", \
+KERNEL=="event*", \
+SUBSYSTEM=="input", \
+RUN+="/bin/systemctl stop 8Bitdo_SFC30_GamePad_Xboxdrv@$kernel"

@@ -1,0 +1,66 @@
+Why?
+
+I wanted to have a reliable way to start and stop xboxdrv when a controller gets connected.
+Using xboxdrv also makes it easier to have the same controls accross different emulators and controllers. 
+
+
+What does it do? 
+
+Once a Controller gets connected to the system the corresponding udev rules will do several things with it:
+
+On connection:
+1. 	Change the file permissions of the original /dev/input/eventX and /dev/input/jsX device files to 0600.
+	This is done to prevent emulators and emulationstation from listing controllers that are occupied by the xboxdrv when started as normal user.
+	xboxdrv creates new event and js device files anyway.
+
+2. 	Afterwards a systemd service is started, which launches the xboxdrv script for the controller that has been connected.
+	The launched xboxdrv-script should have all the need configurations for the controller to work properly
+
+On removal:
+1. 	When the controller is removed or disconnected the systemd service will be stopped.
+	This will kill the corresponding xboxdrv for the controller.
+
+
+
+INSTALL:
+Run install_all.sh as root.
+
+This will create the needed sysmlinks in all directorys so this whole thing actually works.
+
+UNINSTALL:
+Run uninstall_all.sh as root.
+
+This will hopefully remove all the symlinks that have been previously created by install_all.sh
+
+
+TODO:
+- 
+
+
+Directorys:
+├── 8Bitdo
+│   └── SFC30 Gamepad
+│       ├── systemd-servicefiles
+│       │   └── 8Bitdo_SFC30_GamePad_Xboxdrv@.service
+│       ├── udev-rules
+│       │   └── 99-input-8Bitdo_SFC30_GamePad_Xboxdrv.rules
+│       └── xboxdrv-scripts
+│           └── 8Bitdo_SFC30_GamePad_Xboxdrv.sh
+├── install_all.sh
+├── Microsoft
+│   └── Xbox One Wireless Controller
+│       ├── systemd-servicefiles
+│       │   └── Xbox_One_Wireless_Controller_Xboxdrv@.service
+│       ├── udev-rules
+│       │   └── 99-input-Xbox_One_Wireless_Controller_Xboxdrv.rules
+│       └── xboxdrv-scripts
+│           └── Xbox_One_Wireless_Controller_Xboxdrv.sh
+├── Nintendo
+│   └── Switch Pro Controller
+│       ├── systemd-servicefiles
+│       │   └── Nintendo_Switch_Pro_Controller_Xboxdrv@.service
+│       ├── udev-rules
+│       │   └── 99-input-Nintendo_Switch_Pro_Controller_Xboxdrv.rules
+│       └── xboxdrv-scripts
+│           └── Nintendo_Switch_Pro_Controller_Xboxdrv.sh
+└── uninstall_all.sh

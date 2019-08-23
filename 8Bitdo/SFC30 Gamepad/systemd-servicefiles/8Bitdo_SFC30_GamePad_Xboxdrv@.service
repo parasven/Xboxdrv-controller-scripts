@@ -1,0 +1,7 @@
+[Unit]
+Description="8Bitdo SFC30 GamePad udev campanion service #%i""
+After=bluetooth.target
+
+[Service]
+ExecStart=/usr/local/bin/8Bitdo_SFC30_GamePad_Xboxdrv.sh /dev/input/%i
+KillMode=mixed

@@ -1,0 +1,7 @@
+[Unit]
+Description="Nintendo Switch Pro Controller udev campanion service #%i""
+After=bluetooth.target
+
+[Service]
+ExecStart=/usr/local/bin/Nintendo_Switch_Pro_Controller_Xboxdrv.sh /dev/input/%i
+KillMode=mixed
