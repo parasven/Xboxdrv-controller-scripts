@@ -1,14 +1,14 @@
-Why?
+# Why?
 
 I wanted to have a reliable way to start and stop xboxdrv when a controller gets connected.
 Using xboxdrv also makes it easier to have the same controls accross different emulators and controllers. 
 
 
-What does it do? 
+# What does it do? 
 
 Once a Controller gets connected to the system the corresponding udev rules will do several things with it:
 
-On connection:
+## On connection:
 1. 	Change the file permissions of the original /dev/input/eventX and /dev/input/jsX device files to 0600.
 	This is done to prevent emulators and emulationstation from listing controllers that are occupied by the xboxdrv when started as normal user.
 	xboxdrv creates new event and js device files anyway.
@@ -16,28 +16,29 @@ On connection:
 2. 	Afterwards a systemd service is started, which launches the xboxdrv script for the controller that has been connected.
 	The launched xboxdrv-script should have all the need configurations for the controller to work properly
 
-On removal:
+## On removal:
 1. 	When the controller is removed or disconnected the systemd service will be stopped.
 	This will kill the corresponding xboxdrv for the controller.
 
 
 
-INSTALL:
+# INSTALL:
 Run install_all.sh as root.
 
 This will create the needed sysmlinks in all directorys so this whole thing actually works.
 
-UNINSTALL:
+# UNINSTALL:
 Run uninstall_all.sh as root.
 
 This will hopefully remove all the symlinks that have been previously created by install_all.sh
 
 
-TODO:
-- 
+# TODO:
+- Maybe a config where triggers are actually triggers instead of buttons for steam or ps3 emulator
 
 
-Directorys:
+
+# Directorys and Files:
 ├── 8Bitdo
 │   └── SFC30 Gamepad
 │       ├── systemd-servicefiles
