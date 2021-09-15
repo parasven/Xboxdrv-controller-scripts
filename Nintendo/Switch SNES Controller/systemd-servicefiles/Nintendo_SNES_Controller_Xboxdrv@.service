@@ -1,0 +1,7 @@
+[Unit]
+Description="Nintendo Switch SNES Controller udev campanion service #%i""
+After=bluetooth.target
+
+[Service]
+ExecStart=/usr/local/bin/Nintendo_SNES_Controller_Xboxdrv.sh /dev/input/%i
+KillMode=mixed

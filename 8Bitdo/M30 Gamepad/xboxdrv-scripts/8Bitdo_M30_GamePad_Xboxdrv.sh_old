@@ -1,0 +1,25 @@
+#!/bin/bash
+
+sudo /opt/retropie/supplementary/xboxdrv/bin/xboxdrv \
+	--silent \
+	--quiet \
+	--evdev $1 \
+	--detach-kernel-driver \
+	--mimic-xpad \
+	--trigger-as-button \
+	--device-name "8Bitdo M30 GamePad (Xboxdrv)" \
+	--evdev-absmap 	\
+ABS_Z=lb,\
+ABS_RZ=rb,\
+ABS_X=dpad_x,\
+ABS_Y=dpad_y \
+	--evdev-keymap \
+BTN_Z=a,\
+BTN_EAST=b,\
+BTN_NORTH=x,\
+BTN_SOUTH=y,\
+BTN_C=lb,\
+BTN_WEST=rb,\
+BTN_TL=back,\
+BTN_TR=start
+
